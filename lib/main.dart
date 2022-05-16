@@ -1,3 +1,5 @@
+import 'package:app_lich_van_nien/components/bottom_tabs/BottomTab.dart';
+import 'package:app_lich_van_nien/data/models/TabItemData.dart';
 import 'package:app_lich_van_nien/presentation/views/single_day_container.dart';
 import 'package:flutter/material.dart';
 
@@ -72,6 +74,28 @@ class _MyHomePageState extends State<MyHomePage> {
                 ...tabs
               ],
             ),
+             BottomTab(
+                  currentIndex: _currentIndex,
+                  onTabTapped: (){},
+                  items: [
+                    TabItemData(
+                        index: 0,
+                        title: "Ngày",
+                        image: "calendar_day.png"),
+                    TabItemData(
+                        index: 1,
+                        title: "Tháng",
+                        image: "calendar_month.png"),
+                    TabItemData(
+                        index: 2, 
+                        title: "Tử vi", 
+                        image: "tv.png"),
+                    TabItemData(
+                        index: 3, 
+                        title: "Mở rộng", 
+                        image: "menu.png")
+                  ],
+                )
                 // new
                
               ],

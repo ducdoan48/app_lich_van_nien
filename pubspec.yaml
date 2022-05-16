@@ -43,6 +43,8 @@ dependencies:
   provider: ^6.0.2
   flutter_rating_bar: ^4.0.0
   get_it: ^7.2.0
+  table_calendar: ^3.0.5
+  google_fonts: ^0.3.8
 
 dev_dependencies:
   flutter_test:
@@ -68,8 +70,13 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    
     - image_2.jpg
+    - menu.png
+    - quotes.json
+    - calendar_month.png
+    - calendar_day.png
+   
+  
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
