@@ -1,11 +1,15 @@
 // ignore_for_file: use_key_in_widget_constructors
 
+import 'dart:async';
+
 import 'package:app_lich_van_nien/core/utility.dart';
 import 'package:app_lich_van_nien/data/models/QuoteVO.dart';
-import 'package:app_lich_van_nien/components/Stroxtext.dart';
+import 'package:app_lich_van_nien/presentation/widgets/SelectedDateButton.dart';
+import 'package:app_lich_van_nien/presentation/widgets/Stroxtext.dart';
 import 'package:app_lich_van_nien/data/repositories/mocks/api_connection_mock.dart';
+import 'package:app_lich_van_nien/presentation/widgets/SwipeDetector.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+
 
 class SingleDayContainer extends StatefulWidget {
   const SingleDayContainer({Key? key}) : super(key: key);
@@ -14,21 +18,39 @@ class SingleDayContainer extends StatefulWidget {
   State<SingleDayContainer> createState() => _SingleDayContainerState();
 }
 
-class _SingleDayContainerState extends State<SingleDayContainer> {
+class _SingleDayContainerState extends State<SingleDayContainer>
+  with TickerProviderStateMixin<SingleDayContainer>
+   {
   List<QuoteVO> _quoteData = [];
   DateTime _selectedDate = DateTime.now();
+
+  late AnimationController _controller;//thay đổi hoạt ảnh khi swipe
 
   @override
   void initState() {
     super.initState();
     _getData();
+
+     _controller = AnimationController( 
+        duration: const Duration(milliseconds: 300), vsync: this);//vsyncđối số. Sự hiện diện của vsyncngăn chặn các hoạt ảnh ngoài màn hình tiêu tốn tài nguyên không cần thiết. Bạn có thể sử dụng đối tượng trạng thái của mình làm vsync bằng cách thêm TickerProviderStateMixinvào định nghĩa lớp.
+
+    _controller.value = 0.8;
+    _controller.forward();
+    //timer update datetime
+     Timer.periodic(
+        const Duration(seconds: 1),
+        (Timer timer) => setState(() {
+              DateTime now = DateTime.now();
+              _selectedDate = DateTime(_selectedDate.year, _selectedDate.month,
+                  _selectedDate.day, now.hour, now.minute, now.second);
+            }));
   }
 
   @override
   void dispose() {
     super.dispose();
   }
-
+//get data từ file json
   _getData() async {
     var data = await loadQuoteData();
     setState(() {
@@ -36,21 +58,21 @@ class _SingleDayContainerState extends State<SingleDayContainer> {
     });
   }
 
-  // _onSwipeLeft() {
-  //   _controller.value = 0.8;
-  //   _controller.forward();
-  //   setState(() {
-  //     _selectedDate = decreaseDay(_selectedDate);
-  //   });
-  // }
+  _onSwipeLeft() {
+    _controller.value = 0.8;
+    _controller.forward();
+    setState(() {
+      _selectedDate = decreaseDay(_selectedDate);
+    });
+  }
 
-  // _onSwipeRight() {
-  //   _controller.value = 0.8;
-  //   _controller.forward();
-  //   setState(() {
-  //     _selectedDate = increaseDay(_selectedDate);
-  //   });
-  // }
+  _onSwipeRight() {
+    _controller.value = 0.8;
+    _controller.forward();
+    setState(() {
+      _selectedDate = increaseDay(_selectedDate);
+    });
+  }
 
   _showDatePicker(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
@@ -69,8 +91,8 @@ class _SingleDayContainerState extends State<SingleDayContainer> {
     }
   }
 
-  // khai báo biến top kiểu double, xong dưới top: top để thay đổi khoảng cách tùy ý
-  // //Widget paddingText( String text, TextStyle style){
+// khai báo biến top kiểu double, xong dưới top: top để thay đổi khoảng cách tùy ý
+// //Widget paddingText( String text, TextStyle style){
 //     return Padding(
 //       padding: const EdgeInsets.only(top: 5, left: 10, right: 20), cố định top
 //       child: Text(text, style: style),
@@ -110,7 +132,7 @@ class _SingleDayContainerState extends State<SingleDayContainer> {
                   height: 40,
                   width: 100,
                   child: GestureDetector(
-                    //click vào sẽ trở lại tgian ngày hnay
+                    //click vào sẽ trở lại tgian ngày htai
                     onTap: () {
                       setState(() {
                         _selectedDate = DateTime.now();
@@ -129,6 +151,7 @@ class _SingleDayContainerState extends State<SingleDayContainer> {
   }
 
   Widget getMainDate() {
+    var backgroundIndex = (_selectedDate.day % 17);
     var dayOfWeek = getNameDayofWeek(_selectedDate);
     var quote = QuoteVO(" ", " "); //khởi tạo quote = rỗng
     if (_quoteData.isNotEmpty) {
@@ -152,18 +175,18 @@ class _SingleDayContainerState extends State<SingleDayContainer> {
     );
 
     return Expanded(
-      // child: SwipeDetector(
-      // onSwipeRight: () {
-      //   _onSwipeRight();
-      // },
-      // onSwipeLeft: () {
-      //   _onSwipeLeft();
-      // },
+      child: SwipeDetector(
+      onSwipeRight: () {
+        _onSwipeRight();
+      },
+      onSwipeLeft: () {
+        _onSwipeLeft();
+      },
       child: (Stack(
         children: <Widget>[
-          const Positioned.fill(
+           Positioned.fill(
             child: Image(
-              image: AssetImage('assets/image_2.jpg'),
+              image: AssetImage('image_${backgroundIndex + 1}.jpg'),
               fit: BoxFit.cover,
               width: 900,
             ),
@@ -209,9 +232,10 @@ class _SingleDayContainerState extends State<SingleDayContainer> {
           getHeader(),
         ],
       )),
-    );
+    ));
   }
 
+//Viền ngăn cách giữa các cột
   Widget infoBox(Widget widget) {
     return Expanded(
       child: (Container(
@@ -224,14 +248,29 @@ class _SingleDayContainerState extends State<SingleDayContainer> {
       )),
     );
   }
+
+//thông tin chi tiết giờ/tháng/âm lịch
   Widget getDateInfo() {
     var hourStyle = const TextStyle(
-        color: Colors.white, fontWeight: FontWeight.bold, fontSize: 14);
-  
+        color: Colors.white, fontWeight: FontWeight.bold, fontSize: 25);
+    var hourHD = const TextStyle(
+        color: Colors.white, fontWeight: FontWeight.bold, fontSize: 12);
     var lunarStyle = const TextStyle(
-        color: Colors.white, fontWeight: FontWeight.bold, fontSize: 14);
+        color: Colors.white, fontWeight: FontWeight.bold, fontSize: 16);
     var hourMinute = '${_selectedDate.hour} : ${_selectedDate.minute}';
-
+    var lunarDates = convertSolar2Lunar(
+        _selectedDate.day, _selectedDate.month, _selectedDate.year, 7);
+    var lunarDay = lunarDates[0];
+    var lunarMonth = lunarDates[1];
+    var lunarYear = lunarDates[2];
+    var lunarMonthName = getCanChiMonth(lunarMonth, lunarYear);
+    var lunarYearName = getCanChiYear(lunarYear);
+     //get day and hour by can chi
+    var jd = jdn(_selectedDate.day, _selectedDate.month, _selectedDate.year);
+    var hoangDaoHour = getGioHoangDao(jd);
+    var dayName = getCanDay(jd);
+//    print('day name is ${{dayName}}');
+    var beginHourName = getBeginHour(jd);
     return Container(
         color: Colors.black.withOpacity(0.3),
         child: Row(
@@ -241,14 +280,18 @@ class _SingleDayContainerState extends State<SingleDayContainer> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Text(hourMinute, style: hourStyle),
-                Text('Giáp Tí', style: hourStyle),
+                Text('Giờ $beginHourName', style: lunarStyle),
+                Padding(
+                  padding: const EdgeInsets.only(left: 10.0),
+                  child: Text('$hoangDaoHour',style: hourHD),
+                ),
               ],
             ),),
            infoBox( Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: const [
+              children:  [
                   StrokeText(
-                    '15',
+                    ' $lunarDay',
                     strokeWidth: 1,
                     fontSize: 60,
                     color: Colors.red,
@@ -259,8 +302,10 @@ class _SingleDayContainerState extends State<SingleDayContainer> {
            infoBox(Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Text('8:20', style: lunarStyle),
-                Text('Giáp Tí', style: lunarStyle),
+                Text("Năm $lunarYearName", style: lunarStyle),
+                Text('Tháng $lunarMonthName', style: lunarStyle),
+                Text("Ngày $dayName", style: lunarStyle),
+
               ],
             )),
             
@@ -268,6 +313,7 @@ class _SingleDayContainerState extends State<SingleDayContainer> {
         ));
   }
 
+// thanh tiêu đề Giờ/ tháng/ âm lịch
   Widget getBarInfo() {
     var hourStyle = const TextStyle(
         color: Colors.white, fontWeight: FontWeight.bold, fontSize: 18);
@@ -310,49 +356,18 @@ class _SingleDayContainerState extends State<SingleDayContainer> {
   }
 
   @override
+  // ignore: must_call_super
   Widget build(BuildContext context) {
     return Column(children: <Widget>[
       getMainDate(),
     ]);
   }
+
+
+
+
 }
 
-mixin Font {}
 
-// button chọn ngày
-class SelectDateButton extends StatelessWidget {
-  const SelectDateButton({required this.title, required this.onPress});
-  final String title;
-  final Function onPress;
-  @override
-  Widget build(BuildContext context) {
-    var textStyle = const TextStyle(
-        color: Colors.white, fontSize: 17, fontWeight: FontWeight.bold);
-    return GestureDetector(
-      onTap: () {
-        onPress();
-      },
-      child: Container(
-        height: 40,
-        width: 190,
-        padding: const EdgeInsets.only(left: 10, right: 10),
-        decoration: BoxDecoration(
-          borderRadius: const BorderRadius.all(Radius.circular(100)),
-          border: Border.all(
-              color: Colors.white, width: 1.0, style: BorderStyle.solid),
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Center(child: Text(title, style: textStyle)), //title: tháng-năm
-            const Icon(
-              Icons.arrow_drop_down,
-              size: 30,
-              color: Colors.white,
-            )
-          ],
-        ),
-      ),
-    );
-  }
-}
+
+

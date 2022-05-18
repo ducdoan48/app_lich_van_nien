@@ -1,5 +1,6 @@
 import 'package:app_lich_van_nien/components/bottom_tabs/BottomTab.dart';
 import 'package:app_lich_van_nien/data/models/TabItemData.dart';
+import 'package:app_lich_van_nien/presentation/views/month_container.dart';
 import 'package:app_lich_van_nien/presentation/views/single_day_container.dart';
 import 'package:flutter/material.dart';
 
@@ -31,15 +32,6 @@ class MyApp extends StatelessWidget {
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
 
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
   final String title;
 
   @override
@@ -49,13 +41,14 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _currentIndex = 0;
   final List<Widget> tabs = [
-   const SingleDayContainer()
+   const SingleDayContainer(),
+   const MonthContainer(),
    
   ];
 
   void onTabTapped(int index) {
     // ignore: avoid_print
-    print(index);
+    
     setState(() {
       _currentIndex = index;
     });
@@ -76,7 +69,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
              BottomTab(
                   currentIndex: _currentIndex,
-                  onTabTapped: (){},
+                  onTabTapped: onTabTapped,
                   items: [
                     TabItemData(
                         index: 0,
@@ -100,7 +93,6 @@ class _MyHomePageState extends State<MyHomePage> {
                
               ],
             ),
-            bottom: true,
-            top: false));
+           ));
   }
 }

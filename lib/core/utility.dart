@@ -94,7 +94,7 @@ const chiList = [
   "Tý",
   "Sửu",
   "Dần",
-  "Mẹo",
+  "Mão",
   "Thìn",
   "Tị",
   "Ngọ",
@@ -103,7 +103,7 @@ const chiList = [
 
 const chiForMonthList = [
   "Dần",
-  "Mẹo",
+  "Mão",
   "Thìn",
   "Tị",
   "Ngọ",
@@ -119,7 +119,7 @@ const chiForMonthList = [
 // ignore: constant_identifier_names
 const CAN = ['Giáp', 'Ất', 'Bính', 'Đinh', 'Mậu', 'Kỷ', 'Canh', 'Tân', 'Nhâm', 'Quý'];
 // ignore: constant_identifier_names
-const CHI = ['Tý', 'Sửu', 'Dần', 'Mẹo', 'Thìn', 'Tỵ', 'Ngọ', 'Mùi', 'Thân', 'Dậu', 'Tuất', 'Hợi'];
+const CHI = ['Tý', 'Sửu', 'Dần', 'Mão', 'Thìn', 'Tỵ', 'Ngọ', 'Mùi', 'Thân', 'Dậu', 'Tuất', 'Hợi'];
 // ignore: constant_identifier_names
 const TIETKHI = ['Xuân phân', 'Thanh minh', 'Cốc vũ', 'Lập hạ', 'Tiểu mãn', 'Mang chủng',
 'Hạ chí', 'Tiểu thử', 'Đại thử', 'Lập thu', 'Xử thử', 'Bạch lộ',
@@ -392,6 +392,7 @@ getCanHour(jdn) {
   return CAN[(jdn - 1) * 2 % 10];
 }
 
+//ngày âm lịch
  getCanDay(jdn) {
   var dayName, monthName, yearName;
   dayName = CAN[(jdn + 9) % 10] + " " + CHI[(jdn+1)%12];
@@ -409,14 +410,13 @@ jdn(dd, mm, yy) {
 getGioHoangDao(jd) {
   var chiOfDay = (jd+1) % 12;
   var gioHD = GIO_HD[chiOfDay % 6]; // same values for Ty' (1) and Ngo. (6), for Suu and Mui etc.
-  var ret = "";
+  var ret = " ";
   var count = 0;
   for (var i = 0; i < 12; i++) {
     if (gioHD.substring(i, i + 1) == '1') {
-      ret += CHI[i];
-      ret += ' (${{(i*2+23)%24}}-${{(i*2+1)%24}})';
-      if (count++ < 5) ret += ', ';
-      if (count == 3) ret += '\n';
+      var chi =  CHI[i] +' '; //tạo biến var gán = CHI[i] +',';
+      ret += chi;
+      //ret += CHI[i];
     }
   }
   return ret;
