@@ -1,4 +1,3 @@
-
 import 'package:app_lich_van_nien/components/calendar/constants.dart';
 import 'package:flutter/material.dart';
 
@@ -11,33 +10,38 @@ class Header extends StatelessWidget {
   Widget build(BuildContext context) {
     var month = currentMonth.month;
     var year = currentMonth.year;
-    var title = '${months[month - 1]}-$year'.toUpperCase();
+    var title = '${months[month - 1]} - $year'.toUpperCase();//mảng months[ ], 
+    //ex: currentMonth.month = 5 =>months[5 - 1 = 4] 
+    //mà vtri thứ 4 trong mảng months là "Tháng 5" 
     const titleStyle = TextStyle(
       color: Colors.white,
-     
-      fontSize: 20
+      fontWeight: FontWeight.bold,
+      fontSize: 16
     );
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: <Widget>[
-        IconButton(
-          icon: const Icon(Icons.arrow_left),
-          iconSize: 30,
-          color: Colors.white,
-          onPressed: () {
-            onPreviousPress();
-          },
-        ),
-        Text(title, style: titleStyle),
-        IconButton(
-          icon: const Icon(Icons.arrow_right),
-          iconSize: 30,
-          color: Colors.white,
-          onPressed: () {
-            onNextPress();
-          },
-        ),
-      ],
+    return Container(
+      color: Colors.black.withOpacity(0.3),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          IconButton(
+            icon: const Icon(Icons.arrow_left),
+            iconSize: 30,
+            color: Colors.white,
+            onPressed: () {
+              onPreviousPress();
+            },
+          ),
+          Text(title, style: titleStyle),
+          IconButton(
+            icon: const Icon(Icons.arrow_right),
+            iconSize: 30,
+            color: Colors.white,
+            onPressed: () {
+              onNextPress();
+            },
+          ),
+        ],
+      ),
     );
   }
 }

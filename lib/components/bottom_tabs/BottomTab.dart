@@ -31,7 +31,7 @@ class BottomTab extends StatelessWidget {
       height: 60,
       child: Container(
         decoration: BoxDecoration(
-          color: Colors.black.withOpacity(0.9)
+          color: Colors.black.withOpacity(0.6)
         ),
         child: Row(
           children: children
