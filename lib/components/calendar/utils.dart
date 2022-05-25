@@ -1,3 +1,13 @@
+DateTime firstDayOfWeek(DateTime date) {
+  int weekDay = date.weekday - 1;
+  return date.subtract(Duration(days: weekDay));
+}
+
+DateTime endDayOfWeek(DateTime date) {
+  int weekDay = 7 - date.weekday;
+  return date.add(Duration(days: weekDay));
+}
+
 //tăng tháng
 DateTime increaseMonth(DateTime date) {
   var month = date.month;

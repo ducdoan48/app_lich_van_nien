@@ -23,7 +23,7 @@ class DayOfWeek extends StatelessWidget {
     // TODO: implement build
     return infoBox(
         Container(
-          color: const Color.fromARGB(255, 221, 180, 180),
+          color: Color.fromARGB(255, 219, 197, 197),
           width: width,
           height: 40,
           child: Center(

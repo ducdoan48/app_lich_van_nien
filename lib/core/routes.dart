@@ -1,9 +1,9 @@
 
 
 
-class Routes {
-  Routes._();
+// class Routes {
+//   Routes._();
 
-  static const home = '/single_day_container';
+//   static const home = '/single_day_container';
 
-}
+// }

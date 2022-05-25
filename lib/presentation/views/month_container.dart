@@ -1,53 +1,76 @@
-// ignore_for_file: unused_field, must_call_super
+// ignore_for_file: unused_field, must_call_super, non_constant_identifier_names
 
 // import 'package:app_lich_van_nien/components/calendar/calendar.dart';
 // import 'package:app_lich_van_nien/data/models/EventVO.dart';
 import 'package:app_lich_van_nien/components/calendar/calendar.dart';
+import 'package:app_lich_van_nien/data/models/EventVO.dart';
+import 'package:app_lich_van_nien/data/repositories/mocks/api_connection_mock.dart';
 import 'package:flutter/material.dart';
 
 class MonthContainer extends StatefulWidget {
   const MonthContainer({Key? key}) : super(key: key);
 
-  
-
   @override
   State<MonthContainer> createState() => _MonthContainerState();
 }
 
-class _MonthContainerState extends State<MonthContainer>
- with AutomaticKeepAliveClientMixin<MonthContainer> 
-
- {
-
+class _MonthContainerState extends State<MonthContainer> 
+ with AutomaticKeepAliveClientMixin<MonthContainer>{
   final List<DateTime> _markedDates = [];
-  
+  List<EventVO> _eventData = [];
+  late DateTime _calendar = DateTime.now();
 
   @override
+  void initState() {
+    super.initState();
+    _getData();
+  }
+
+//get nội dung sự kiện
+  _getData() async {
+    var data = await loadEventData();
+    setState(() {
+      _eventData = data;
+    });
+   
+    generate_markedDates();
+  }
+
+  generate_markedDates() {
+    for (var event in _eventData) {
+      // duyệt sự kiện trong mảng _eventData[]
+      _markedDates.add(event.date); //thêm nội dung vào ngày nào có sự kiện
+    }
+  }
+ 
+  @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Container(
-     
-          decoration: const BoxDecoration(
+        decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage("image_background.jpg"),
+            image: AssetImage("hinh_nen.jpg"),
             fit: BoxFit.cover,
-          
           ),
         ),
-         child: Padding(
+        child: Padding(
           padding: const EdgeInsets.only(top: 40, bottom: 60),
-          child: Column(
-            children: <Widget>[
-             Calendar(
-           
-              ),
-             
-            ],
+          child: SingleChildScrollView(
+            child: Calendar(
+              markedDays: _markedDates,
+                onDateTimeChanged: (newDate) {
+                  setState(() {
+                    _calendar = newDate;
+                  });
+                  
+                },
+            ),
           ),
-        )
-       
-    );
+        ));
   }
 
   @override
   bool get wantKeepAlive => true;
+
+
 }

@@ -11,6 +11,7 @@ class Header extends StatelessWidget {
     var month = currentMonth.month;
     var year = currentMonth.year;
     var title = '${months[month - 1]} - $year'.toUpperCase();//mảng months[ ], 
+    //tháng tăng hay giảm là do Function onPreviousPress - calendar 
     //ex: currentMonth.month = 5 =>months[5 - 1 = 4] 
     //mà vtri thứ 4 trong mảng months là "Tháng 5" 
     const titleStyle = TextStyle(
@@ -18,11 +19,14 @@ class Header extends StatelessWidget {
       fontWeight: FontWeight.bold,
       fontSize: 16
     );
+
+
     return Container(
-      color: Colors.black.withOpacity(0.3),
+      color: Colors.black.withOpacity(0.8),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
+          
           IconButton(
             icon: const Icon(Icons.arrow_left),
             iconSize: 30,

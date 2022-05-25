@@ -27,15 +27,38 @@ String getNameDayofWeek(DateTime date) { //weekday: thứ
     return "Chủ nhật";
   
 }
+String getNameDayofWeekMonth(DateTime date) { //weekday: thứ 
+  if(date.weekday == DateTime.monday){
+    return "Thứ hai";
+  }
+  if(date.weekday == DateTime.tuesday){
+    return "Thứ ba";
+  }
+  if(date.weekday == DateTime.wednesday){
+    return "Thứ tư";
+  }
+  if(date.weekday == DateTime.thursday){
+    return "Thứ năm";
+  }
+  if(date.weekday == DateTime.friday){
+    return "Thứ sáu";
+  }
+  if(date.weekday == DateTime.saturday){
+    return "Thứ bảy";
+  }
+  
+    return "Chủ nhật";
+  
+}
 DateTime increaseDay(DateTime date) {
   var day = date.day + 1;
   var month = date.month;
   var year = date.year;
   var maxDayThisMonth = lastDayOfMonth(date);
-  if(maxDayThisMonth.day == day) {
-    day = 1;
+  if(maxDayThisMonth.day == day) { //nếu ngày cuối cùng của tháng == ngày hthi
+    day = 1;//thì lúc tăng lên sẽ = 1
     month ++;
-    if(date.month == 12) {
+    if(date.month == 12) {//nếu tháng == 12,thì lúc tăng lên sẽ = 1, năm tăng lên 1
       month = 1;
       year ++;
     }
@@ -48,24 +71,26 @@ DateTime decreaseDay(DateTime date) {
   var day = date.day - 1;
   var month = date.month;
   var year = date.year;
-  if(date.day == 1) {
-    var maxDayPreviousMonth = lastDayOfPreviousMonth(date);
-    day = maxDayPreviousMonth.day;
+   var maxDayPreviousMonth = lastDayOfPreviousMonth(date);
+  if(date.day == 1) {//nếu ngày hiển thị == 1 
+    day = maxDayPreviousMonth.day;//thì ngày hiển thị lúc giảm xuống (- 1) = ngày cuối cùng của tháng trước
     month = maxDayPreviousMonth.month;
     year = maxDayPreviousMonth.year;
   }
 
   return DateTime(year, month, day, date.hour, date.minute, date.second);
 }
-DateTime lastDayOfMonth(DateTime date) {
-  if (date.month < 12) {
-    return DateTime(date.year, date.month + 1, 0);
+//ngày cuối cùng của tháng
+ lastDayOfMonth(DateTime date) {
+ 
+if (date.month < 12) {
+    return  DateTime(date.year, date.month + 1, 0);
   }
-  return  DateTime(date.year + 1, 1, 0);
+  return  DateTime(date.year , date.month + 1, 0);
 }
-
-DateTime lastDayOfPreviousMonth(DateTime date) {
-  return  DateTime(date.year, date.month, 0);
+//ngày cuối cùng của tháng trước
+ lastDayOfPreviousMonth(DateTime date) {
+  return  DateTime(date.year, date.month, 0 ); 
 }
 
 
@@ -420,6 +445,23 @@ getGioHoangDao(jd) {
     }
   }
   return ret;
+}
+getGioHoangDaoCT(jd) {
+  var chiOfDay = (jd+1) % 12;
+  var gioHD = GIO_HD[chiOfDay % 6]; // same values for Ty' (1) and Ngo. (6), for Suu and Mui etc.
+
+late List<String> listret = [];
+  var count = 0;
+  for (var i = 0; i < 12; i++) {
+    String ret = "";
+    if (gioHD.substring(i, i + 1) == '1') {
+      var name = CHI[i] + ':';
+      ret += name;
+      ret += ' (${(i*2+23)%24}h -${(i*2+1)%24}h)';
+    listret.add(ret);
+    }
+  }
+  return listret;
 }
 
 getTietKhi(jd) {
