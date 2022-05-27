@@ -14,6 +14,7 @@ class MonthContainer extends StatefulWidget {
   State<MonthContainer> createState() => _MonthContainerState();
 }
 
+<<<<<<< HEAD
 class _MonthContainerState extends State<MonthContainer> {
   final List<DateTime> _markedDates = [];
   List<EventVO> _eventData = [];
@@ -41,9 +42,40 @@ class _MonthContainerState extends State<MonthContainer> {
       _markedDates.add(event.date); //thêm nội dung vào ngày nào có sự kiện
     }
   }
+=======
+class _MonthContainerState extends State<MonthContainer> 
+ with AutomaticKeepAliveClientMixin<MonthContainer>{
+  final List<DateTime> _markedDates = [];
+  List<EventVO> _eventData = [];
+  late DateTime _calendar = DateTime.now();
+>>>>>>> c3ac15c772941ca9c582def2cc3fc18e45face71
 
   @override
+  void initState() {
+    super.initState();
+    _getData();
+  }
+
+//get nội dung sự kiện
+  _getData() async {
+    var data = await loadEventData();
+    setState(() {
+      _eventData = data;
+    });
+   
+    generate_markedDates();
+  }
+
+  generate_markedDates() {
+    for (var event in _eventData) {
+      // duyệt sự kiện trong mảng _eventData[]
+      _markedDates.add(event.date); //thêm nội dung vào ngày nào có sự kiện
+    }
+  }
+ 
+  @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Container(
         decoration: const BoxDecoration(
           image: DecorationImage(
@@ -56,6 +88,7 @@ class _MonthContainerState extends State<MonthContainer> {
           child: SingleChildScrollView(
             child: Calendar(
               markedDays: _markedDates,
+<<<<<<< HEAD
               onDateTimeChanged: (newDate) {
                 setState(() {
                   _calendar = newDate;
@@ -66,4 +99,21 @@ class _MonthContainerState extends State<MonthContainer> {
         )
         );
   }
+=======
+                onDateTimeChanged: (newDate) {
+                  setState(() {
+                    _calendar = newDate;
+                  });
+                  
+                },
+            ),
+          ),
+        ));
+  }
+
+  @override
+  bool get wantKeepAlive => true;
+
+
+>>>>>>> c3ac15c772941ca9c582def2cc3fc18e45face71
 }

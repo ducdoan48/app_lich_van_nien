@@ -31,9 +31,16 @@ class _CalendarState extends State<Calendar> with TickerProviderStateMixin {
   List<EventVO> _eventByMonths = [];
   late List<EventVO> _eventData = [];
   final List<DateTime> markedDays;
+<<<<<<< HEAD
   late DateTime calendar;
   late DateTime selectedDate;
   late DateTime _selectedDate;
+=======
+  late DateTime calendar = DateTime.now();
+  late DateTime selectedDate;
+  late DateTime _selectedDate;
+  final DateTime _calendar = DateTime.now();
+>>>>>>> c3ac15c772941ca9c582def2cc3fc18e45face71
   //animation
   late AnimationController _controller;
   late Animation<Offset> _offsetFloat;
@@ -41,8 +48,13 @@ class _CalendarState extends State<Calendar> with TickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
+<<<<<<< HEAD
     calendar = DateTime.now();
     _getData(calendar);
+=======
+    _getData();
+    calendar = DateTime.now();
+>>>>>>> c3ac15c772941ca9c582def2cc3fc18e45face71
     selectedDate = DateTime.now();
     _selectedDate = DateTime.now();
     //animation
@@ -72,7 +84,12 @@ class _CalendarState extends State<Calendar> with TickerProviderStateMixin {
     var jd = jdn(_selectedDate.day, _selectedDate.month, _selectedDate.year);
     var hoangDaoHour = getGioHoangDao(jd);
     var dayName = getCanDay(jd);
+<<<<<<< HEAD
 
+=======
+//    print('day name is ${{dayName}}');
+    selectedDate = DateTime.now();
+>>>>>>> c3ac15c772941ca9c582def2cc3fc18e45face71
 
     var dayOfWeek = getNameDayofWeekMonth(_selectedDate);
     return SizedBox(
@@ -82,6 +99,7 @@ class _CalendarState extends State<Calendar> with TickerProviderStateMixin {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
+<<<<<<< HEAD
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -97,6 +115,20 @@ class _CalendarState extends State<Calendar> with TickerProviderStateMixin {
                 ),
                 Text(hoangDaoHour, style: hourHD),
               ],
+=======
+            Padding(
+              padding: const EdgeInsets.only(left: 8.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(dayOfWeek, style: hourStyle),
+                  Text(
+                      '${selectedDate.day}-${selectedDate.month}-${selectedDate.year}',
+                      style: lunarStyle),
+                  Text(hoangDaoHour, style: hourHD),
+                ],
+              ),
+>>>>>>> c3ac15c772941ca9c582def2cc3fc18e45face71
             ),
             Padding(
               padding: const EdgeInsets.only(right: 8.0),
@@ -180,6 +212,10 @@ class _CalendarState extends State<Calendar> with TickerProviderStateMixin {
   }
 
   Widget eventMonth() {
+<<<<<<< HEAD
+=======
+    var eventCTsyle = const TextStyle(color: Colors.white, fontSize: 18);
+>>>>>>> c3ac15c772941ca9c582def2cc3fc18e45face71
     var barHDstyle = const TextStyle(
         color: Colors.yellow, fontSize: 18, fontWeight: FontWeight.bold);
     return Padding(
@@ -228,7 +264,11 @@ class _CalendarState extends State<Calendar> with TickerProviderStateMixin {
     );
   }
 
+<<<<<<< HEAD
   Widget getMonthComponent() {
+=======
+  Widget getMonthComponent(context) {
+>>>>>>> c3ac15c772941ca9c582def2cc3fc18e45face71
     var width = MediaQuery.of(context)
         .size
         .width; //mediaQuery.of thiết kế bố cục phù hợp
@@ -312,12 +352,18 @@ class _CalendarState extends State<Calendar> with TickerProviderStateMixin {
             child: Column(children: columnItems),
             onSwipeLeft: () {
               onPreviousPress();
+<<<<<<< HEAD
               _getData(calendar);
 
             },
             onSwipeRight: () {
               onNextPress();
               _getData(calendar);
+=======
+            },
+            onSwipeRight: () {
+              onNextPress();
+>>>>>>> c3ac15c772941ca9c582def2cc3fc18e45face71
             },
           ),
         ),
@@ -369,12 +415,20 @@ class _CalendarState extends State<Calendar> with TickerProviderStateMixin {
     onDateTimeChanged(newCalendar);
   }
 
+<<<<<<< HEAD
   _getData(DateTime date) async {
+=======
+  _getData() async {
+>>>>>>> c3ac15c772941ca9c582def2cc3fc18e45face71
     var data = await loadEventData();
     setState(() {
       _eventData = data;
     });
+<<<<<<< HEAD
     generateEventByMonth(date.month);
+=======
+    generateEventByMonth(_calendar.month);
+>>>>>>> c3ac15c772941ca9c582def2cc3fc18e45face71
   
   }
 
@@ -401,8 +455,12 @@ class _CalendarState extends State<Calendar> with TickerProviderStateMixin {
           onPreviousPress: onPreviousPress,
           onNextPress: onNextPress,
         ),
+<<<<<<< HEAD
         getMonthComponent(),
         
+=======
+        getMonthComponent(context),
+>>>>>>> c3ac15c772941ca9c582def2cc3fc18e45face71
       ],
     );
   }

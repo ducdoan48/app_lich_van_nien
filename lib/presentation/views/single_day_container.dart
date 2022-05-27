@@ -18,7 +18,11 @@ class SingleDayContainer extends StatefulWidget {
 }
 
 class _SingleDayContainerState extends State<SingleDayContainer>
+<<<<<<< HEAD
   {
+=======
+    with TickerProviderStateMixin<SingleDayContainer> {
+>>>>>>> c3ac15c772941ca9c582def2cc3fc18e45face71
   List<QuoteVO> _quoteData = [];
   DateTime _selectedDate = DateTime.now();
 
@@ -231,10 +235,14 @@ class _SingleDayContainerState extends State<SingleDayContainer>
       child: (Container(
       
         decoration: const BoxDecoration(
+<<<<<<< HEAD
             border: Border(right: BorderSide(color: Colors.grey)
             ),
             ),
             
+=======
+            border: Border(right: BorderSide(color: Colors.grey))),
+>>>>>>> c3ac15c772941ca9c582def2cc3fc18e45face71
         child: widget,
       )),
     );

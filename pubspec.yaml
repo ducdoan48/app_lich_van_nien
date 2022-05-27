@@ -96,12 +96,16 @@ flutter:
     - image_background.jpg
     - events.json
     - hinh_nen.jpg
+<<<<<<< HEAD
     - tv1.jpg
     - xongdat.jpg
     - meovatcs.jpg
     - vochong.jpg
     - pngtree-ink-eight-diagrams-transparent-decorative-material-png-image_4087237.png
     - weather.png
+=======
+   
+>>>>>>> c3ac15c772941ca9c582def2cc3fc18e45face71
   
 
   # An image asset can refer to one or more resolution-specific "variants", see
