@@ -1,3 +1,5 @@
+// ignore_for_file: constant_identifier_names
+
 import 'package:flutter/material.dart';
 
 const months = [
@@ -18,11 +20,12 @@ const days = ["T2", "T3", "T4", "T5", "T6", "T7", "CN"];
 
 //day
 const BOX_SELECTED_COLOR = Colors.blue;
-const BOX_TODAY_COLOR = Colors.green; //vòng tròn 
+const BOX_TODAY_COLOR = Colors.green; 
 const EVENT_DOT_COLOR = Colors.red;
 const DAY_TEXT_SELECTED = Colors.yellow;
 const DAY_TEXT_OTHER = Colors.grey;
 const DAY_TEXT_NORMAL = Colors.white;
+const LUNAR_TEXT_BELOW = Colors.blue;
 
 //dot
 const DOT_COLOR = Colors.red;

@@ -44,6 +44,7 @@ dependencies:
   flutter_rating_bar: ^4.0.0
   get_it: ^7.2.0
   table_calendar: ^3.0.5
+  package_info: ^2.0.2
   
 
 dev_dependencies:
@@ -87,12 +88,20 @@ flutter:
     - image_15.jpg
     - image_16.jpg
     - image_17.jpg
+    - background-tet-2019-kỷ-hợi.jpg
     - menu.png
     - quotes.json
     - calendar_month.png
     - calendar_day.png
     - image_background.jpg
-   
+    - events.json
+    - hinh_nen.jpg
+    - tv1.jpg
+    - xongdat.jpg
+    - meovatcs.jpg
+    - vochong.jpg
+    - pngtree-ink-eight-diagrams-transparent-decorative-material-png-image_4087237.png
+    - weather.png
   
 
   # An image asset can refer to one or more resolution-specific "variants", see
