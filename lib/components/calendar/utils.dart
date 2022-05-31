@@ -41,7 +41,10 @@ bool isOtherMonth(DateTime date, DateTime currentMonth) {
 }
 
 bool equalDate(DateTime date1, DateTime date2) {
+<<<<<<< HEAD
   // ignore: unnecessary_null_comparison
+=======
+>>>>>>> aa2bf2550482c05de98a2e90a0a58e56ebbb2aaf
   if(date1 == null || date2 == null) {
     return false;
   }

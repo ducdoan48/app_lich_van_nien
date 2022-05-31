@@ -45,9 +45,12 @@ dependencies:
   get_it: ^7.2.0
   table_calendar: ^3.0.5
   package_info: ^2.0.2
+<<<<<<< HEAD
   flutter_svg: ^1.1.0
   google_fonts: ^3.0.1
   transformer_page_view: ^0.1.6
+=======
+>>>>>>> aa2bf2550482c05de98a2e90a0a58e56ebbb2aaf
   
 
 dev_dependencies:
@@ -91,7 +94,11 @@ flutter:
     - image_15.jpg
     - image_16.jpg
     - image_17.jpg
+<<<<<<< HEAD
 
+=======
+    - background-tet-2019-kỷ-hợi.jpg
+>>>>>>> aa2bf2550482c05de98a2e90a0a58e56ebbb2aaf
     - menu.png
     - quotes.json
     - calendar_month.png
@@ -99,10 +106,15 @@ flutter:
     - image_background.jpg
     - events.json
     - hinh_nen.jpg
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> aa2bf2550482c05de98a2e90a0a58e56ebbb2aaf
     - tv1.jpg
     - xongdat.jpg
     - meovatcs.jpg
     - vochong.jpg
+<<<<<<< HEAD
    
     - weather.png
     - moon.svg
@@ -110,6 +122,13 @@ flutter:
     - img_2.jpg
     - img_3.jpg
     - img_4.jpg
+=======
+    - pngtree-ink-eight-diagrams-transparent-decorative-material-png-image_4087237.png
+    - weather.png
+=======
+   
+>>>>>>> c3ac15c772941ca9c582def2cc3fc18e45face71
+>>>>>>> aa2bf2550482c05de98a2e90a0a58e56ebbb2aaf
   
 
   # An image asset can refer to one or more resolution-specific "variants", see

@@ -15,6 +15,10 @@ class EventList extends StatelessWidget {
   Widget build(BuildContext context) {
     // TODO: implement build
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> aa2bf2550482c05de98a2e90a0a58e56ebbb2aaf
     return  Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
@@ -28,6 +32,16 @@ class EventList extends StatelessWidget {
           },
         ),
       ),
+<<<<<<< HEAD
+=======
+=======
+    return  ListView.builder(
+      itemCount: data.length,
+      itemBuilder: (context, int index) {
+        return renderItem(data[index]);
+      },
+>>>>>>> c3ac15c772941ca9c582def2cc3fc18e45face71
+>>>>>>> aa2bf2550482c05de98a2e90a0a58e56ebbb2aaf
     );
   }
 

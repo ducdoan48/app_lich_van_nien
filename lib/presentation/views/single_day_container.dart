@@ -18,7 +18,15 @@ class SingleDayContainer extends StatefulWidget {
 }
 
 class _SingleDayContainerState extends State<SingleDayContainer>
+<<<<<<< HEAD
   {
+=======
+<<<<<<< HEAD
+  {
+=======
+    with TickerProviderStateMixin<SingleDayContainer> {
+>>>>>>> c3ac15c772941ca9c582def2cc3fc18e45face71
+>>>>>>> aa2bf2550482c05de98a2e90a0a58e56ebbb2aaf
   List<QuoteVO> _quoteData = [];
   DateTime _selectedDate = DateTime.now();
 
@@ -178,6 +186,10 @@ class _SingleDayContainerState extends State<SingleDayContainer>
             child: Image(
               image: AssetImage('image_${backgroundIndex + 1}.jpg'),
               fit: BoxFit.cover,
+<<<<<<< HEAD
+=======
+         
+>>>>>>> aa2bf2550482c05de98a2e90a0a58e56ebbb2aaf
             ),
           ),
           Padding(
@@ -230,10 +242,20 @@ class _SingleDayContainerState extends State<SingleDayContainer>
       child: (Container(
       
         decoration: const BoxDecoration(
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> aa2bf2550482c05de98a2e90a0a58e56ebbb2aaf
             border: Border(right: BorderSide(color: Colors.grey)
             ),
             ),
             
+<<<<<<< HEAD
+=======
+=======
+            border: Border(right: BorderSide(color: Colors.grey))),
+>>>>>>> c3ac15c772941ca9c582def2cc3fc18e45face71
+>>>>>>> aa2bf2550482c05de98a2e90a0a58e56ebbb2aaf
         child: widget,
       )),
     );

@@ -41,9 +41,17 @@ class _MyHomePageState extends State<MyHomePage> {
   final List<Widget> tabs = [
     const SingleDayContainer(),
     const MonthContainer(),
+<<<<<<< HEAD
     const HoroscopeContainer(),
     const InfoContainer(),
     const WeatherContainer(),
+=======
+<<<<<<< HEAD
+    const HoroscopeContainer(),
+    InfoContainer(),
+=======
+>>>>>>> c3ac15c772941ca9c582def2cc3fc18e45face71
+>>>>>>> aa2bf2550482c05de98a2e90a0a58e56ebbb2aaf
   ];
 
    onTabTapped(int index) {
@@ -71,9 +79,20 @@ class _MyHomePageState extends State<MyHomePage> {
             items: [
               TabItemData(index: 0, title: "Ngày", image: "calendar_day.png"),
               TabItemData(index: 1, title: "Tháng", image: "calendar_month.png"),
+<<<<<<< HEAD
               TabItemData(index: 2, title: "Tử vi", image: "pngtree-ink-eight-diagrams-transparent-decorative-material-png-image_4087237.png"),
               TabItemData(index: 3, title: "Mở rộng", image: "menu.png"),
               TabItemData(index: 4, title: "Thời tiết", image: "weather.png")
+=======
+<<<<<<< HEAD
+              TabItemData(index: 2, title: "Tử vi", image: "pngtree-ink-eight-diagrams-transparent-decorative-material-png-image_4087237.png"),
+              TabItemData(index: 3, title: "Mở rộng", image: "menu.png"),
+              TabItemData(index: 4, title: "Thời tiết", image: "weather.png")
+=======
+              TabItemData(index: 2, title: "Tử vi", image: "tv.png"),
+              TabItemData(index: 3, title: "Mở rộng", image: "menu.png")
+>>>>>>> c3ac15c772941ca9c582def2cc3fc18e45face71
+>>>>>>> aa2bf2550482c05de98a2e90a0a58e56ebbb2aaf
             ],
           )
           // new

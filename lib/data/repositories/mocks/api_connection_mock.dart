@@ -37,6 +37,7 @@ Future<List<EventVO>> loadEventData() async {
   }
   return results;
 }
+<<<<<<< HEAD
 // //get content thơ + tác giả
 // Future<List<WeatherLocation>> loadLocations() async {
 //   var jsonString = await loadAssets('locations.json');
@@ -58,3 +59,5 @@ Future<List<EventVO>> loadEventData() async {
 //   }
 //   return results;
 // }
+=======
+>>>>>>> aa2bf2550482c05de98a2e90a0a58e56ebbb2aaf

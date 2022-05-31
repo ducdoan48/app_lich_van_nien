@@ -8,7 +8,15 @@ class DayOfWeek extends StatelessWidget {
 
   final String title;
   final double width;
+<<<<<<< HEAD
   Widget infoBox(Widget widget) {
+=======
+<<<<<<< HEAD
+  Widget infoBox(Widget widget) {
+=======
+  Widget infoBox(Widget widget, bool hasBorder) {
+>>>>>>> c3ac15c772941ca9c582def2cc3fc18e45face71
+>>>>>>> aa2bf2550482c05de98a2e90a0a58e56ebbb2aaf
     return Expanded(
       child: Container(
         decoration: const BoxDecoration(
@@ -23,7 +31,15 @@ class DayOfWeek extends StatelessWidget {
     // TODO: implement build
     return infoBox(
         Container(
+<<<<<<< HEAD
           color: Color.fromARGB(255, 219, 182, 182),
+=======
+<<<<<<< HEAD
+          color: Color.fromARGB(255, 219, 182, 182),
+=======
+          color: Color.fromARGB(255, 219, 197, 197),
+>>>>>>> c3ac15c772941ca9c582def2cc3fc18e45face71
+>>>>>>> aa2bf2550482c05de98a2e90a0a58e56ebbb2aaf
           width: width,
           height: 40,
           child: Center(
@@ -35,6 +51,14 @@ class DayOfWeek extends StatelessWidget {
                     fontWeight: FontWeight.bold)),
           ),
         ),
+<<<<<<< HEAD
         );
+=======
+<<<<<<< HEAD
+        );
+=======
+        true);
+>>>>>>> c3ac15c772941ca9c582def2cc3fc18e45face71
+>>>>>>> aa2bf2550482c05de98a2e90a0a58e56ebbb2aaf
   }
 }

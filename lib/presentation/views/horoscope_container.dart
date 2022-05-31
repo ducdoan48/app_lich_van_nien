@@ -10,7 +10,22 @@ class HoroscopeContainer extends StatefulWidget {
 }
 
 class _HoroscopeContainerState extends State<HoroscopeContainer> {
+<<<<<<< HEAD
 
+=======
+  int _currentIndex = 0; // page default là 0
+  final List<Widget> tabs = [
+    
+  ];
+
+   onTabTapped(int index) {
+    // ignore: avoid_print
+
+    setState(() {
+      _currentIndex = index;
+    });
+  }
+>>>>>>> aa2bf2550482c05de98a2e90a0a58e56ebbb2aaf
   @override
   Widget build(BuildContext context) {
     return Container(

@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
+<<<<<<< HEAD
 
 
 class InfoContainer extends StatefulWidget {
   const InfoContainer({Key? key}) : super(key: key);
 
+=======
+import 'dart:async' show Future;
+
+
+class InfoContainer extends StatefulWidget {
+>>>>>>> aa2bf2550482c05de98a2e90a0a58e56ebbb2aaf
   @override
   State createState() {
     return _InfoContainerState();
@@ -11,8 +18,13 @@ class InfoContainer extends StatefulWidget {
 }
 
 class _InfoContainerState extends State<InfoContainer> {
+<<<<<<< HEAD
   final _version = "";
   final _buildNumber = "";
+=======
+  var _version = "";
+  var _buildNumber = "";
+>>>>>>> aa2bf2550482c05de98a2e90a0a58e56ebbb2aaf
 
   @override
   void initState() {
