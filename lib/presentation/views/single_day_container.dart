@@ -10,7 +10,6 @@ import 'package:app_lich_van_nien/data/repositories/mocks/api_connection_mock.da
 import 'package:app_lich_van_nien/presentation/widgets/SwipeDetector.dart';
 import 'package:flutter/material.dart';
 
-
 class SingleDayContainer extends StatefulWidget {
   const SingleDayContainer({Key? key}) : super(key: key);
 
@@ -19,25 +18,17 @@ class SingleDayContainer extends StatefulWidget {
 }
 
 class _SingleDayContainerState extends State<SingleDayContainer>
-  with TickerProviderStateMixin<SingleDayContainer>
-   {
+  {
   List<QuoteVO> _quoteData = [];
   DateTime _selectedDate = DateTime.now();
-
-  late AnimationController _controller;//thay đổi hoạt ảnh khi swipe
 
   @override
   void initState() {
     super.initState();
     _getData();
 
-     _controller = AnimationController( 
-        duration: const Duration(milliseconds: 300), vsync: this);//vsyncđối số. Sự hiện diện của vsyncngăn chặn các hoạt ảnh ngoài màn hình tiêu tốn tài nguyên không cần thiết. Bạn có thể sử dụng đối tượng trạng thái của mình làm vsync bằng cách thêm TickerProviderStateMixinvào định nghĩa lớp.
-
-    _controller.value = 0.8;
-    _controller.forward();
     //timer update datetime
-     Timer.periodic(
+    Timer.periodic(
         const Duration(seconds: 1),
         (Timer timer) => setState(() {
               DateTime now = DateTime.now();
@@ -50,6 +41,7 @@ class _SingleDayContainerState extends State<SingleDayContainer>
   void dispose() {
     super.dispose();
   }
+
 //get data từ file json
   _getData() async {
     var data = await loadQuoteData();
@@ -59,16 +51,12 @@ class _SingleDayContainerState extends State<SingleDayContainer>
   }
 
   _onSwipeLeft() {
-    _controller.value = 0.8;
-    _controller.forward();
     setState(() {
       _selectedDate = decreaseDay(_selectedDate);
     });
   }
 
   _onSwipeRight() {
-    _controller.value = 0.8;
-    _controller.forward();
     setState(() {
       _selectedDate = increaseDay(_selectedDate);
     });
@@ -108,10 +96,11 @@ class _SingleDayContainerState extends State<SingleDayContainer>
   Widget getHeader() {
     var title = 'Tháng ${_selectedDate.month} - ${_selectedDate.year}';
 
-    var todayStyle =
-        const TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize:18);
+    var todayStyle = const TextStyle(
+        color: Colors.white, fontWeight: FontWeight.bold, fontSize: 18);
 
     return Positioned(
+      //Positioned định vị widget con của một Stack.
       top: 40,
       left: 10,
       right: 10,
@@ -175,7 +164,7 @@ class _SingleDayContainerState extends State<SingleDayContainer>
     );
 
     return Expanded(
-      child: SwipeDetector(
+        child: SwipeDetector(
       onSwipeRight: () {
         _onSwipeRight();
       },
@@ -184,11 +173,11 @@ class _SingleDayContainerState extends State<SingleDayContainer>
       },
       child: (Stack(
         children: <Widget>[
-           Positioned.fill(
+          Positioned.fill(
+            //Widget Positioned được sử dụng để định vị cho một widget con của một Stack.
             child: Image(
               image: AssetImage('image_${backgroundIndex + 1}.jpg'),
               fit: BoxFit.cover,
-              width: 900,
             ),
           ),
           Padding(
@@ -196,7 +185,7 @@ class _SingleDayContainerState extends State<SingleDayContainer>
             child: Column(
               children: <Widget>[
                 Padding(
-                  padding: const EdgeInsets.only(top: 150),
+                  padding: const EdgeInsets.only(top: 120),
                   child: StrokeText(
                     _selectedDate.day.toString(),
                     strokeWidth: 3,
@@ -210,13 +199,13 @@ class _SingleDayContainerState extends State<SingleDayContainer>
                 Expanded(
                   child: Align(
                     alignment: Alignment.bottomCenter,
-                    child: paddingText(20, quote.content, quoteStyle),
+                    child: paddingText(10, quote.content, quoteStyle),
                   ),
                 ),
                 Expanded(
                   child: Align(
                     alignment: Alignment.centerRight,
-                    child: paddingText(20, quote.author, quoteAuthorStyle),
+                    child: paddingText(0, quote.author, quoteAuthorStyle),
                   ),
                 ),
                 SizedBox(
@@ -239,11 +228,12 @@ class _SingleDayContainerState extends State<SingleDayContainer>
   Widget infoBox(Widget widget) {
     return Expanded(
       child: (Container(
-        padding: const EdgeInsets.only(right: 10),
+      
         decoration: const BoxDecoration(
-            border: Border(
-                right:
-                    BorderSide(color: Colors.grey))),
+            border: Border(right: BorderSide(color: Colors.grey)
+            ),
+            ),
+            
         child: widget,
       )),
     );
@@ -265,31 +255,36 @@ class _SingleDayContainerState extends State<SingleDayContainer>
     var lunarYear = lunarDates[2];
     var lunarMonthName = getCanChiMonth(lunarMonth, lunarYear);
     var lunarYearName = getCanChiYear(lunarYear);
-     //get day and hour by can chi
+    //get day and hour by can chi
     var jd = jdn(_selectedDate.day, _selectedDate.month, _selectedDate.year);
     var hoangDaoHour = getGioHoangDao(jd);
     var dayName = getCanDay(jd);
 //    print('day name is ${{dayName}}');
     var beginHourName = getBeginHour(jd);
     return Container(
+       
         color: Colors.black.withOpacity(0.3),
+        
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            infoBox( Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Text(hourMinute, style: hourStyle),
-                Text('Giờ $beginHourName', style: lunarStyle),
-                Padding(
-                  padding: const EdgeInsets.only(left: 10.0),
-                  child: Text('$hoangDaoHour',style: hourHD),
-                ),
-              ],
-            ),),
-           infoBox( Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children:  [
+            infoBox(
+              Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Text(hourMinute, style: hourStyle),
+                  Text('Giờ $beginHourName', style: lunarStyle),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10.0),
+                    child: Text(hoangDaoHour, style: hourHD),
+                  ),
+                ],
+              ),
+            ),
+            infoBox(
+              Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
                   StrokeText(
                     ' $lunarDay',
                     strokeWidth: 1,
@@ -297,18 +292,17 @@ class _SingleDayContainerState extends State<SingleDayContainer>
                     color: Colors.red,
                     strokeColor: Colors.white,
                   ),
-              ],
-            ),),
-           infoBox(Column(
+                ],
+              ),
+            ),
+            infoBox(Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Text("Năm $lunarYearName", style: lunarStyle),
                 Text('Tháng $lunarMonthName', style: lunarStyle),
                 Text("Ngày $dayName", style: lunarStyle),
-
               ],
             )),
-            
           ],
         ));
   }
@@ -362,12 +356,4 @@ class _SingleDayContainerState extends State<SingleDayContainer>
       getMainDate(),
     ]);
   }
-
-
-
-
 }
-
-
-
-

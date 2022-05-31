@@ -1,0 +1,37 @@
+[
+   
+    {
+        "city": "Hà Nội",
+        "dateTime": "01:20 AM — Tuesday, 10 Nov 2020",
+        "temperature": "10\u2103",
+        "weatherType": "Rainy",
+        "iconUrl": "assets/rain.svg",
+        "wind": 20,
+        "rain": 70,
+        "humidity": 91
+     },
+     {
+        "city": "Hồ Chí Minh",
+        "dateTime": "01:20 AM — Tuesday, 10 Nov 2020",
+        "temperature": "10\u2103",
+        "weatherType": "Rainy",
+        "iconUrl": "assets/rain.svg",
+        "wind": 20,
+        "rain": 70,
+        "humidity": 91
+     },
+ {
+    "city": "Đà Nẵng",
+    "dateTime": "01:20 AM — Tuesday, 10 Nov 2020",
+    "temperature": "10\u2103",
+    "weatherType": "Rainy",
+    "iconUrl": "assets/rain.svg",
+    "wind": 50,
+    "rain": 10,
+    "humidity": 23
+ }
+  
+]
+
+
+   
